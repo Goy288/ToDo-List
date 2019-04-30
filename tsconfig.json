@@ -1,0 +1,10 @@
+{
+    "files": ["scripts/ts/main.ts"],
+    "compileOnSave": true,
+    "compilerOptions": {
+        "removeComments": true,
+        "target": "es5",
+        "outFile": "scripts/js/main.js",
+        "watch": true
+    }
+}
