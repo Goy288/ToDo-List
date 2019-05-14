@@ -61,10 +61,20 @@
             <div id="todo-list"></div>
         </div>
         <script>
-            var calendar = flatpickr(".calendar", {
+            var today = new Date();
+            var currDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+            var currTime = today.toLocaleString('en-US', { 
+                hour: 'numeric', 
+                minute: 'numeric', 
+                hour12: true
+            });
+            
+            setInputs();
+
+            var calendars = flatpickr(".calendar", {
                 inline: true
             });
-            var clock = flatpickr(".clock", {
+            var clocks = flatpickr(".clock", {
                 inline: true,
                 enableTime: true,
                 noCalendar: true,
@@ -72,8 +82,24 @@
             });
             function resetFlatpicker(){
                 processNewItem();
-                calendar.destroy();
-                clock.destroy();
+                calendars.forEach(calendar => {
+                    calendar.clear();
+                });
+                calendars.forEach(clock => {
+                    clock.clear();
+                });
+                currTime = today.toLocaleString('en-US', { 
+                    hour: 'numeric', 
+                    minute: 'numeric', 
+                    hour12: true
+                });
+                setInputs();
+            }
+            function setInputs(){
+                document.getElementById("start-date").value = currDate;
+                document.getElementById("end-date").value = currDate;
+                document.getElementById("start-time").value = currTime;
+                document.getElementById("end-time").value = currTime;
             }
         </script>
     </body>
