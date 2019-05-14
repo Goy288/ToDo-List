@@ -1,3 +1,35 @@
+body{
+    background: #5a617e;
+    color: rgba(255,255,255);
+}
+
+textarea, input, select, button {
+    background: #3f4458;
+    color: rgba(255,255,255);
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000;
+    border-radius: 3px;
+}
+
+div#todo-list > p, p.completed{
+    background-color: #3f4458;
+    color:white;
+    padding: .5em;
+    border-radius: .2em;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000;
+    display: inline-block;
+    margin-right: .75em;
+}
+
+p.completed{
+    background-color: #4b5068!important;
+    text-decoration: line-through;
+}
+
 .err-note{
     color: red;
+    white-space: nowrap;
 }

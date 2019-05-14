@@ -1,10 +1,14 @@
 {
-    "files": ["scripts/ts/main.ts"],
+    "files": [
+        "scripts/ts/main.ts"],
     "compileOnSave": true,
     "compilerOptions": {
+        "baseUrl": ".",
+        "paths": { "*": ["types/*"] },
         "removeComments": true,
         "target": "es5",
         "outFile": "scripts/js/main.js",
-        "watch": true
+        "watch": true,
+        "module": "system"
     }
 }

@@ -10,7 +10,10 @@
         <meta name="description"
               content="Create a to do list for free!">
         <link rel="stylesheet" href="styles\css\styles.css">
-        <link rel="stylesheet" href="node_modules\js-datepicker\dist\datepicker.min.css">
+        <link rel="stylesheet" href="node_modules\flatpickr\dist\flatpickr.min.css">
+        <link rel="stylesheet" href="node_modules\flatpickr\dist\themes\dark.min.css">
+        <script src="node_modules\flatpickr\dist\flatpickr.min.js"></script>
+        <script src="scripts\js\main.js"></script>
     </head>
     <body>
         <header>
@@ -25,22 +28,53 @@
             <label for="description">Description: </label>
             <textarea id="description" rows="8" cols="25"></textarea>
             <span class="err-note"></span>
-            <br>
+            <br><br>
 
             <label for="start-date">Start Date: </label>
-            <input id="start-date" type="text" width="400px">
+            <input class="calendar" type="text" id="start-date" placeholder="Select Date..."  width="400px" data-input>
             <span class="err-note">*</span>
             <br>
-            
+
             <label for="start-time">Start Time: </label>
-            <input id="start-time" type="time" width="400px">
+            <input class="clock" type="text" id="start-time" placeholder="Select Time..."  width="400px" data-input>
+            <span class="err-note">*</span>
+            <br><br>
+
+            <label for="end-date">End Date: </label>
+            <input class="calendar" type="text" id="end-date" placeholder="Select Date..."  width="400px" data-input>
             <span class="err-note">*</span>
             <br>
+
+            <label for="end-time">End Time: </label>
+            <input class="clock" type="text" id="end-time" placeholder="Select Time..."  width="400px" data-input>
+            <span class="err-note">*</span>
+            <br><br>
+
+            <label for="priority">Priority</label>
+            <select id="priority">
+                <option value="0">Low</option>
+                <option value="1">Medium</option>
+                <option value="2">High</option>
+            </select>
+            <br><br>
+            <button id="submit-btn" onclick="resetFlatpicker()">Submit</button>
+            <div id="todo-list"></div>
         </div>
-        <script src="scripts\js\main.js"></script>
-        <script src="node_modules\js-datepicker\dist\datepicker.min.js"></script>
         <script>
-            const picker = datepicker("#start-date");
+            var calendar = flatpickr(".calendar", {
+                inline: true
+            });
+            var clock = flatpickr(".clock", {
+                inline: true,
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i"
+            });
+            function resetFlatpicker(){
+                processNewItem();
+                calendar.destroy();
+                clock.destroy();
+            }
         </script>
     </body>
 </html>
