@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="node_modules\flatpickr\dist\flatpickr.min.css">
         <link rel="stylesheet" href="node_modules\flatpickr\dist\themes\dark.min.css">
         <script src="node_modules\flatpickr\dist\flatpickr.min.js"></script>
+        <script src="node_modules\js-cookie\src\js.cookie.min.js"></script>
         <script src="scripts\js\main.js"></script>
     </head>
     <body>
@@ -61,46 +62,7 @@
             <div id="todo-list"></div>
         </div>
         <script>
-            var today = new Date();
-            var currDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-            var currTime = today.toLocaleString('en-US', { 
-                hour: 'numeric', 
-                minute: 'numeric', 
-                hour12: true
-            });
             
-            setInputs();
-
-            var calendars = flatpickr(".calendar", {
-                inline: true
-            });
-            var clocks = flatpickr(".clock", {
-                inline: true,
-                enableTime: true,
-                noCalendar: true,
-                dateFormat: "H:i"
-            });
-            function resetFlatpicker(){
-                processNewItem();
-                calendars.forEach(calendar => {
-                    calendar.clear();
-                });
-                calendars.forEach(clock => {
-                    clock.clear();
-                });
-                currTime = today.toLocaleString('en-US', { 
-                    hour: 'numeric', 
-                    minute: 'numeric', 
-                    hour12: true
-                });
-                setInputs();
-            }
-            function setInputs(){
-                document.getElementById("start-date").value = currDate;
-                document.getElementById("end-date").value = currDate;
-                document.getElementById("start-time").value = currTime;
-                document.getElementById("end-time").value = currTime;
-            }
         </script>
     </body>
 </html>

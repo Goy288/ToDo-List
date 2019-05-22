@@ -7,8 +7,8 @@
         "paths": { "*": ["types/*"] },
         "removeComments": true,
         "target": "es5",
-        "outFile": "scripts/js/main.js",
+        "outDir": "scripts/js",
         "watch": true,
-        "module": "system"
+        "module": "commonjs"
     }
 }

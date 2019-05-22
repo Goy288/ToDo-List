@@ -1,3 +1,5 @@
+//import * as Cookies from "js-cookie";
+
 class ToDoItem{
     title:string;
     description:string;
@@ -14,8 +16,6 @@ class ToDoItem{
         this.priority = priority;
     }
 }
-
-let testItem = new ToDoItem();
 
 window.onload = function () {
     /*
@@ -91,15 +91,18 @@ function getItemFromForm():ToDoItem {
     item.priority =
         priorityElem.options[priorityElem.selectedIndex].value;
 
-
     return item;
 }
 function saveItem(item:ToDoItem):void{
     let data:string = JSON.stringify(item);
-    console.log("Converting todoitem into JSON string");
+    console.log("Converting ToDoItem into JSON string");
     console.log(data);
+    /*
+    */
 
+    /*
     if(typeof(Storage) != "undefined"){
         localStorage.setItem("todo", item.title);
     }
+    */
 }
