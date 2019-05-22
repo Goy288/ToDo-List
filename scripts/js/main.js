@@ -18,11 +18,12 @@ var today = new Date();
 var testItem = new ToDoItem();
 
 var count;
-if (Cookies.get("count") == null){
+
+if (localStorage.getItem("count") == null){
     count = 0;
 }
 else{
-    count = Number(Cookies.get("count"));
+    count = Number(localStorage.getItem("count"));
 }
 
 var calendars;
@@ -42,14 +43,14 @@ window.onload = function() {
         dateFormat: "h:i K"
     });
 
-    if (Cookies.getJSON().toDoItems != null){
-        let jsonData = Cookies.getJSON();
+    if (JSON.parse(localStorage.getItem("toDoItems")) != null){
+        let jsonData = JSON.parse(localStorage.getItem("toDoItems"));
         console.log(jsonData);
         //let toDoData = new Array(Object.keys(jsonData.toDoItems).length - 1);
         
-        for (let toDoObj in jsonData.toDoItems) { 
+        for (let toDoObj in jsonData) { 
             console.log(toDoObj);
-            let currObj = jsonData.toDoItems[toDoObj]
+            let currObj = jsonData[toDoObj]
             let item = new ToDoItem();
             item.title = currObj.title;
             item.description = currObj.description;
@@ -177,17 +178,18 @@ function saveItem(item) {
     let data = JSON.stringify(item);
     console.log("Converting ToDoItem into JSON string");
     console.log(data);
-    if(Cookies.get("toDoItems") != undefined){
-        let toDoCookies = Cookies.get("toDoItems");
+    if(JSON.parse(localStorage.getItem('toDoItems')) != undefined){
+        let toDoCookies = localStorage.getItem('toDoItems');
         let newJSON = toDoCookies.substr(0, toDoCookies.length - 1)
                     + ", \"item_" + count + "\":" + data + "}";
-        Cookies.set("toDoItems", newJSON);
+        localStorage.setItem("toDoItems", newJSON);
     }
     else{
-        Cookies.set("toDoItems", "{\"item_" + count + "\":" + data + "}");
+        localStorage.setItem("toDoItems", "{\"item_" + count + "\":" + data + "}");
     }
     //Cookies.set("toDoItems", "item_" + count + ":" + {JSON.parse(data)});
     console.log("Storing JSON String as toDoItems.item_" + count);
     count += 1;
-    Cookies.set("count", (count).toString())
+    localStorage.setItem("count", count);
+    //Cookies.set("count", (count).toString())
 }
